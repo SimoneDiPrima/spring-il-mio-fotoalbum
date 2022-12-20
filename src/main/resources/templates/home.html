@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>FOTO</h1>
+<ul style="list-style-type:none">
+<strong>Menu Fotografo</strong>
+			<li
+				th:each="foto : ${foto}"
+				th:object="${foto}">
+			[[*{titolo}]]-[[*{descrizione}]]-<img src="[[${foto.url}]]"><br>
+			<a class="btn btn-success text-white" th:href="@{/foto/{id} (id=*{id})}">VEDI NEL DETTAGLIO LA TUA FOTO</a>
+			</li>
+	</ul>
+
+</body>
+</html>
