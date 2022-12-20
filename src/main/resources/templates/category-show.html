@@ -5,13 +5,10 @@
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 <title>Insert title here</title>
 </head>
-<body th:object="${foto}" class="bg-dark">
-
+<body class="bg-dark" th:object="${category}">
 	<container class="text-white offset-3 col-6">
-		<a href="/"  class="col-2 ms-4 btn btn-danger d-block">Torna al menu principale</a>
-		<h2> [[*{titolo}]]</h2>
-		<p>[[*{descrizione}]]</p>
-		<img class="img-fluid" th:src="*{url}" alt="la foto piu bella del mondo">
+		<a href="/category"  class="col-2 ms-4 btn btn-danger d-block">Torna al menu delle categorie</a>
+		<h2> [[*{nome}]]</h2>
 	</container>
 
 </body>

@@ -2,17 +2,22 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 <title>Insert title here</title>
 </head>
-<body>
+<body class="bg-dark text-white">
 <h1>FOTO</h1>
 <ul style="list-style-type:none">
 <strong>Menu Fotografo</strong>
+	<a class="offset-8 btn btn-success text-white"  href="/foto/create" type="button"><h5>Crea la tua nuova FotoRicordo preferita!</h5></a>
+	<a class="offset-8 btn btn-success text-white"  href="/category" type="button"><h5>Vai alle tue categorie!</h5></a>
 			<li
 				th:each="foto : ${foto}"
 				th:object="${foto}">
-			[[*{titolo}]]-[[*{descrizione}]]-<img src="[[${foto.url}]]"><br>
+			[[*{titolo}]]-[[*{descrizione}]]-<img class="img-fluid" th:src="*{url}"><br>
 			<a class="btn btn-success text-white" th:href="@{/foto/{id} (id=*{id})}">VEDI NEL DETTAGLIO LA TUA FOTO</a>
+			<a class="btn btn-warning text-white" th:href="@{/foto/update/{id} (id=*{id})}">MODIFICA LA TUA FOTO</a> 
+				<a class="btn btn-danger text-white" th:href="@{/foto/delete/{id} (id=*{id})}">CANCELLA LA TUA FOTO</a>
 			</li>
 	</ul>
 
