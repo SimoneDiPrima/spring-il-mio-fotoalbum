@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.foto.italy.demo.pojo.Category;
+import org.foto.italy.demo.pojo.Foto;
 import org.foto.italy.demo.service.CategoryService;
+import org.foto.italy.demo.service.FotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import jakarta.validation.Valid;
 public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private FotoService fotoService;
 	
 	@GetMapping("/category")
 	public String getHomeCategory(Model model) {
@@ -47,7 +51,8 @@ public class CategoryController {
 		
 		Category category = new Category();
 		model.addAttribute("category", category);
-		
+		List<Foto> foto = fotoService.findAll();
+		model.addAttribute("foto", foto);
 		return "category-create";
 	}
 	@PostMapping("/category/create")

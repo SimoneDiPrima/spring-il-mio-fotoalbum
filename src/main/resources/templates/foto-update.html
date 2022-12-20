@@ -24,6 +24,19 @@
 			<label>Url</label>
 			<input type="text" name="url" th:field="*{url}">
 			<br>
+			<div class="text-white"
+			th:each="category : ${categories}"
+			th:object="${category}"
+		>
+			<input
+				type="checkbox"
+				name="category"
+				
+				th:value="*{id}"
+				th:field="${foto.categories}"
+			>
+			<label>[[*{nome}]]</label>
+		</div>
 		<input class="offset-9 col-2 mt-5 btn btn-success" type="submit" value="Modifica">
 	
 		</form>

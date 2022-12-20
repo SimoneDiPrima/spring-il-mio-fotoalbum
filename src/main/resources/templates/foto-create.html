@@ -6,24 +6,37 @@
 <title>Insert title here</title>
 </head>
 <body class="bg-dark text-white">
-<h1>Crea la tua nuova Fotoricordo</h1>
+		<h1>Crea la tua nuova Fotoricordo</h1>
 
-<container class="text-white">
-		<h1 class="text-center text-warning my-4">Fotografia Tonino</h1>
-		<a href="/"  class="col-2 btn btn-danger d-block ms-3">Torna al menu principale</a>
-		<h1 class="mb-5 ms-3">Crea la tua nuova Fotoricordo</h1>
-		<form class="ms-3"
-		method="POST" 
-		action="/foto/create"
-		th:object="${foto}" >
-			<label>Titolo</label>
-			<input class="form-input ms-3" type="text" name="name" th:field="*{titolo}">
-			<br>
-			<label>Descrizione</label>
-			<input class="my-4 form-input ms-3" size=30 type="text" name="description" th:field="*{descrizione}">
-			<br>
-			<label>Url</label>
-			<input class="my-4 form-input ms-3" size=30 type="text" name="description" th:field="*{url}">
+		<container class="text-white">
+			<h1 class="text-center text-warning my-4">Fotografia Tonino</h1>
+			<a href="/"  class="col-2 btn btn-danger d-block ms-3">Torna al menu principale</a>
+			<h1 class="mb-5 ms-3">Crea la tua nuova Fotoricordo</h1>
+			<form class="ms-3"
+			method="POST" 
+			action="/foto/create"
+			th:object="${foto}" >
+				<label>Titolo</label>
+				<input class="form-input ms-3" type="text" name="name" th:field="*{titolo}">
+				<br>
+				<label>Descrizione</label>
+				<input class="my-4 form-input ms-3" size=30 type="text" name="description" th:field="*{descrizione}">
+				<br>
+				<label>Url</label>
+				<input class="my-4 form-input ms-3" size=30 type="text" name="description" th:field="*{url}">
+			<div class="text-white"
+			th:each="category : ${categories}"
+			th:object="${category}"
+		>
+			<input
+				type="checkbox"
+				name="category"
+				
+				th:value="*{id}"
+				th:field="${foto.categories}"
+			>
+			<label>[[*{nome}]]</label>
+		</div>
 			<input class="offset-8 btn btn-success text-white" type="submit" value="Crea">
 			
 		</form>

@@ -1,10 +1,14 @@
 package org.foto.italy.demo.pojo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -35,12 +39,23 @@ public class Foto {
 	
 	private Boolean visible;
 	
+	@ManyToMany
+	 private List<Category> categories;
+	
 	public Foto() {}
 	public Foto(String titolo,String descrizione,String url) {
 		setTitolo(titolo);
 		setDescrizione(titolo);
 		setUrl(url);
-		setVisible(visible);
+	}
+	public Foto(String titolo,String descrizione,String url,Category... categories) {
+		this(titolo,descrizione,url);
+		setCategories(Arrays.asList(categories));
+		
+	}
+	public Foto(String titolo,String descrizione,String url,Category category) {
+		this(titolo,descrizione,url);
+		
 	}
 	
 	
@@ -84,6 +99,27 @@ public class Foto {
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 	}
+	
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+	public void addCategory(Category category) {
+		
+		boolean finded = false;
+		for (Category c : getCategories()) {
+			
+			if (c.getId() == category.getId())
+				finded = true;
+		}
+		
+		if (!finded)
+			getCategories().add(category);
+	}
+	
+		
 	@Override
 	public String toString(){
 		return "\n" + getId()+"\nil nome della foto è :" + getTitolo()

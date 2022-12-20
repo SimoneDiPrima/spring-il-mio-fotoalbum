@@ -6,20 +6,26 @@
 <title>Insert title here</title>
 </head>
 <body class="bg-dark text-white">
-<h1>FOTO</h1>
-<ul style="list-style-type:none">
-<strong>Menu Fotografo</strong>
-	<a class="offset-8 btn btn-success text-white"  href="/foto/create" type="button"><h5>Crea la tua nuova FotoRicordo preferita!</h5></a>
+<h1 class="text-center text-warning">FOTOGRAFIA TONINO</h1>
+	<a class="offset-8 btn btn-success text-white my-2"  href="/foto/create" type="button"><h5>Crea la tua nuova FotoRicordo preferita!</h5></a>
 	<a class="offset-8 btn btn-success text-white"  href="/category" type="button"><h5>Vai alle tue categorie!</h5></a>
+<ul style="list-style-type:none"><strong>MENU FOTOGRAFO</strong>
 			<li
 				th:each="foto : ${foto}"
 				th:object="${foto}">
-			[[*{titolo}]]-[[*{descrizione}]]-<img class="img-fluid" th:src="*{url}"><br>
-			<a class="btn btn-success text-white" th:href="@{/foto/{id} (id=*{id})}">VEDI NEL DETTAGLIO LA TUA FOTO</a>
-			<a class="btn btn-warning text-white" th:href="@{/foto/update/{id} (id=*{id})}">MODIFICA LA TUA FOTO</a> 
-				<a class="btn btn-danger text-white" th:href="@{/foto/delete/{id} (id=*{id})}">CANCELLA LA TUA FOTO</a>
+				<span class="invisible">([[*{id}]])</span><br><strong>[[*{titolo}]]</strong><br>
+				[[*{descrizione}]]<br th:if="*{descrizione}">
+				<img th:src="*{url}">
+				<ul>
+				<h5>Categoria/e:</h5>
+					<li
+					 th:each="category : *{categories}" th:object="${category}">[[*{nome}]]
+					</li>
+				</ul>
+				<a class="btn btn-success text-white" th:href="@{/foto/{id} (id=*{id})}">VEDI NEL DETTAGLIO LA TUA FOTO</a>
+				<a class="btn btn-warning text-white" th:href="@{/foto/update/{id} (id=*{id})}">MODIFICA LA TUA FOTO</a> 
+				<a class="btn btn-danger text-white" th:href="@{/foto/delete/{id} (id=*{id})}">CANCELLA DAL MENU LA TUA FOTO</a>
 			</li>
-	</ul>
-
+		</ul>
 </body>
 </html>

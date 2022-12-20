@@ -3,7 +3,9 @@ package org.foto.italy.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.foto.italy.demo.pojo.Category;
 import org.foto.italy.demo.pojo.Foto;
+import org.foto.italy.demo.service.CategoryService;
 import org.foto.italy.demo.service.FotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ public class FotoController {
 	
 	@Autowired
 	FotoService fotoServ;
+	@Autowired
+	CategoryService catServ;
 	
 	@GetMapping("/")
 	public String getHome(Model model) {
@@ -49,6 +53,8 @@ public class FotoController {
 		
 		Foto foto = new Foto();
 		model.addAttribute("foto", foto);
+		List<Category> categories = catServ.findAll();
+		model.addAttribute("categories",categories);
 		
 		return "foto-create";
 	}
@@ -65,7 +71,8 @@ public class FotoController {
 		Optional<Foto> optFoto = fotoServ.findById(id);
 		Foto foto = optFoto.get();
 		model.addAttribute("foto", foto);
-		
+		List<Category> categories = catServ.findAll();
+		model.addAttribute("categories",categories);
 		return "foto-update";
 	}
 	@PostMapping("/foto/update")
