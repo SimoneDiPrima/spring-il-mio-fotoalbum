@@ -37,6 +37,8 @@ public class Foto {
 	
 	private String url;
 	
+	private String tag;
+	
 	private Boolean visible;
 	
 	@ManyToMany
@@ -48,18 +50,20 @@ public class Foto {
 		setDescrizione(titolo);
 		setUrl(url);
 	}
+	public Foto(String titolo,String descrizione,String url,Boolean visible) {
+		this(titolo,descrizione,url);
+		setVisible(visible);
+		
+	}
+	public Foto(String titolo,String descrizione,String url,Boolean visible,String tag) {
+		this(titolo,descrizione,url,visible);
+		setTag(tag);
+	}
 	public Foto(String titolo,String descrizione,String url,Category... categories) {
 		this(titolo,descrizione,url);
 		setCategories(Arrays.asList(categories));
 		
 	}
-	public Foto(String titolo,String descrizione,String url,Category category) {
-		this(titolo,descrizione,url);
-		
-	}
-	
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -90,6 +94,12 @@ public class Foto {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String getTag() {
+		return tag;
+	}
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public Boolean getVisible() {
@@ -125,6 +135,7 @@ public class Foto {
 		return "\n" + getId()+"\nil nome della foto è :" + getTitolo()
 		+ "\nla sua descrizione:"+ getDescrizione(); 
 	}
+
 	
 
 }

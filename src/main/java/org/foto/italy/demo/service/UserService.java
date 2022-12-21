@@ -5,11 +5,15 @@ import java.util.Optional;
 
 import org.foto.italy.demo.pojo.User;
 import org.foto.italy.demo.repo.UserRepo;
+import org.foto.italy.demo.security.DatabaseUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService{
 
 	@Autowired
 	private UserRepo userRepo;
@@ -26,10 +30,16 @@ public class UserService {
 		return userRepo.findById(id);
 	}
 	
-	public Optional<User> findByUsername(String username){
-		return userRepo.findByUsername(username);
-	}
 	public List<User> findAll(){
 		return userRepo.findAll();
+	}
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	
+		Optional<User> userOpt = userRepo.findByUsername(username);
+		
+		if (userOpt.isEmpty()) throw new UsernameNotFoundException("User not found");
+		
+		return new DatabaseUserDetails(userOpt.get());
 	}
 }

@@ -40,24 +40,17 @@ public class SpringIlMioFotoalbum2Application implements CommandLineRunner{
 		
 		Role adminRole = new Role("Admin");
 		
-		Role userRole = new Role("User");
+		
 		
 		roleServ.save(adminRole);
-		roleServ.save(userRole);
 		
-		User userUser = new User("utente","utentepassw",userRole);
-		User adminUser = new User("admin","adminpassw",adminRole);
 		
-		Set<Role> userAdminRoles = new HashSet<>();
+	
+		User adminUser = new User("admin","{noop}adminpassw",adminRole);
 		
-		userAdminRoles.add(adminRole);
-		userAdminRoles.add(userRole);
 		
-		User userAdminUser = new User("userAdmin","userAdminpassw",userAdminRoles);
-		
-		userServ.save(userUser);
 		userServ.save(adminUser);
-		userServ.save(userAdminUser);
+		
 		
 		
 		
