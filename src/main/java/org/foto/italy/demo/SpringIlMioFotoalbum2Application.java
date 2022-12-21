@@ -1,12 +1,18 @@
 package org.foto.italy.demo;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.foto.italy.demo.pojo.Category;
 import org.foto.italy.demo.pojo.Foto;
+import org.foto.italy.demo.pojo.Role;
+import org.foto.italy.demo.pojo.User;
 import org.foto.italy.demo.service.CategoryService;
 import org.foto.italy.demo.service.FotoService;
+import org.foto.italy.demo.service.RoleService;
+import org.foto.italy.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,17 +20,48 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringIlMioFotoalbum2Application implements CommandLineRunner{
-
+	
+	@Autowired
+	private UserService userServ;
+	@Autowired
+	private RoleService roleServ;
 	
 	@Autowired
 	private FotoService fotoServ;
 	
 	@Autowired CategoryService categoryServ;
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIlMioFotoalbum2Application.class, args);
 	}
 	@Override
 	public void run(String... args) throws Exception {
+		
+		Role adminRole = new Role("Admin");
+		
+		Role userRole = new Role("User");
+		
+		roleServ.save(adminRole);
+		roleServ.save(userRole);
+		
+		User userUser = new User("utente","utentepassw",userRole);
+		User adminUser = new User("admin","adminpassw",adminRole);
+		
+		Set<Role> userAdminRoles = new HashSet<>();
+		
+		userAdminRoles.add(adminRole);
+		userAdminRoles.add(userRole);
+		
+		User userAdminUser = new User("userAdmin","userAdminpassw",userAdminRoles);
+		
+		userServ.save(userUser);
+		userServ.save(adminUser);
+		userServ.save(userAdminUser);
+		
+		
+		
+		
 		Foto f1 = new Foto("la foto piu bella","la donna piu bella","https://picsum.photos/200/300");
 		Foto f2 = new Foto("la foto piu brutta","la donna piu brutta","https://picsum.photos/200/300");
 		Foto f3 = new Foto("la foto piu emozionante","la donna piu scarsa","https://picsum.photos/200/300");
