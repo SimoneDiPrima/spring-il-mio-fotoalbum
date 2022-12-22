@@ -19,7 +19,7 @@ public class FotoApiController {
 	private FotoService fotoServ;
 	
 	@GetMapping("/all")
-	public List<Foto> getFoto(){
+public List<Foto> getAllFoto() {
 		return fotoServ.findAll();
 	}
 }

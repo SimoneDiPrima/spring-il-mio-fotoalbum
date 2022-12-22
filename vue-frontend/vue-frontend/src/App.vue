@@ -1,42 +1,58 @@
 <template>
   <div id="app">
-    <div>
-    <h1>FOTOGRAFIA TONINO</h1>
-    <ul>
-      <li
-        v-for="foto in foto"
-        :key="foto.id"
-      >{{ foto.titolo }}
-      </li>
-    </ul>
-  </div>
+    <container>
+      <h1 class="text-center text-warning">FOTOGRAFIA TONINO</h1>
+      <ul>
+        <li
+           v-for="foto in foto"
+          :key="foto.id" >
+          <strong>{{ foto.titolo }}</strong>
+          <br>
+          <img :src="foto.url" :alt="foto.titolo"/>
+          <br>
+          <p>{{ foto.descrizione }}</p>
+        </li>
+      </ul>
+    </container>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-const API_URL = "http://localhost:8080/api/1";
+
 
 export default {
   name: 'App',
-  components: {
-   
-  },
   data() {
     return {
       foto: [],
+      api_url:'http://localhost:8080/api/1',
    
     };
   },
+   methods: {
+    getFotoIndexById(id) {
+      for (let x=0;x<this.foto.length;x++) {
+        const foto = this.foto[x];
+        if (foto.id == id)
+          return x;
+      }
+      return -1;
+    },
+     getFotoById(id) {
+      return this.foto[this.getFotoIndexById(id)];
+    },
+
+
   mounted() {
-    axios.get(API_URL + '/foto/all')
+    axios.get(this.api_url + '/foto/all')
          .then(res => {
      
         const foto = res.data;
         if (foto == null) return;
         this.foto= foto;
     });
-  }}
+  }}}
 </script>
 
 <style lang="scss">
