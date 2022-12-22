@@ -2,6 +2,7 @@ package org.foto.italy.demo.pojo;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,11 +24,11 @@ public class Category {
 	@Column(length = 128)
 	private String nome;
 	
-	@ManyToMany(mappedBy = "categories")
+	@ManyToMany(mappedBy = "categories",cascade = CascadeType.REMOVE)
 	private List<Foto> foto;
 	
 	
-	public Category() {}
+	public Category(){}
 	public Category(String nome) {
 		setNome(nome);
 	}
@@ -48,6 +49,18 @@ public class Category {
 	}
 	public void setFoto(List<Foto> foto) {
 		this.foto = foto;
+	}
+	public void addFoto(Foto foto) {
+		
+		boolean finded = false;
+		for (Foto f : getFoto()) {
+			
+			if (f.getId() == foto.getId())
+				finded = true;
+		}
+		
+		if (!finded)
+			getFoto().add(foto);
 	}
 	
 	@Override

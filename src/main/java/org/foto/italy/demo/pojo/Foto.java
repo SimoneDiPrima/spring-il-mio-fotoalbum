@@ -64,6 +64,7 @@ public class Foto {
 		setCategories(Arrays.asList(categories));
 		
 	}
+	
 	public int getId() {
 		return id;
 	}

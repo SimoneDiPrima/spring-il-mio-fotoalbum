@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/1/")
+@RequestMapping("/api/1/foto")
 public class FotoApiController {
 	
 	@Autowired

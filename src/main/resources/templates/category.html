@@ -9,14 +9,14 @@
 <h1>Categorie</h1>
 	<ul style="list-style-type:none">
 	<strong>Menu Fotografo</strong>
-		<a class="offset-8 btn btn-success text-white"  href="/category/create" type="button"><h5>Crea la tua nuova Categoria preferita!</h5></a>
+		<a class="offset-8 btn btn-success text-white"  href="/category/admin/create" type="button"><h5>Crea la tua nuova Categoria preferita!</h5></a>
 			<li
 				th:each="category : ${category}"
 				th:object="${category}">
 			[[*{nome}]]<br>
 			<a class="btn btn-success text-white" th:href="@{/category/{id} (id=*{id})}">VEDI NEL DETTAGLIO LA TUA CATEGORIA</a>
-			<a class="btn btn-warning text-white" th:href="@{/category/update/{id} (id=*{id})}">MODIFICA LA TUA CATEGORIA</a> 
-				<a class="btn btn-danger text-white" th:href="@{/category/delete/{id} (id=*{id})}">CANCELLA LA TUA CATEGORIA</a>
+			<a  sec:authorize="hasAuthority('Admin')" class="btn btn-warning text-white" th:href="@{/category/admin/update/{id} (id=*{id})}">MODIFICA LA TUA CATEGORIA</a> 
+			<a  sec:authorize="hasAuthority('Admin')" class="btn btn-danger text-white" th:href="@{/category/admin/delete/{id} (id=*{id})}">CANCELLA LA TUA CATEGORIA</a>
 			</li>
 	</ul>
 

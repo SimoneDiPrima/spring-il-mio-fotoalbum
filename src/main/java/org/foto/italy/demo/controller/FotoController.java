@@ -48,7 +48,7 @@ public class FotoController {
 		
 		return "foto-show";
 	}
-	@GetMapping("/foto/create")
+	@GetMapping("/foto/admin/create")
 	public String createFoto(Model model) {
 		
 		Foto foto = new Foto();
@@ -58,14 +58,14 @@ public class FotoController {
 		
 		return "foto-create";
 	}
-	@PostMapping("/foto/create")
+	@PostMapping("/foto/admin/create")
 	public String storeFoto(@Valid @ModelAttribute("foto") Foto foto) {
 		
 		fotoServ.save(foto);
 		
 		return "redirect:/";
 	}
-	@GetMapping("/foto/update/{id}")
+	@GetMapping("/foto/admin/update/{id}")
 	public String getFotoUpdate(@PathVariable("id") int id, Model model) {
 		
 		Optional<Foto> optFoto = fotoServ.findById(id);
@@ -75,7 +75,7 @@ public class FotoController {
 		model.addAttribute("categories",categories);
 		return "foto-update";
 	}
-	@PostMapping("/foto/update")
+	@PostMapping("/foto/admin/update")
 	public String updateFoto(@Valid Foto foto) {
 		
 		fotoServ.save(foto);

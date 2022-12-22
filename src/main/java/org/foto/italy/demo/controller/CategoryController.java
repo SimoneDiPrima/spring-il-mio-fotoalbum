@@ -24,7 +24,7 @@ public class CategoryController {
 	@Autowired
 	private FotoService fotoService;
 	
-	@GetMapping("/category")
+	@GetMapping("/admin/category")
 	public String getHomeCategory(Model model) {
 		List<Category> category = categoryService.findAll();
 		model.addAttribute("category",category);
@@ -46,7 +46,7 @@ public class CategoryController {
 		
 		return "category-show";
 	}
-	@GetMapping("/category/create")
+	@GetMapping("/category/admin/create")
 	public String createCategory(Model model) {
 		
 		Category category = new Category();
@@ -55,14 +55,14 @@ public class CategoryController {
 		model.addAttribute("foto", foto);
 		return "category-create";
 	}
-	@PostMapping("/category/create")
+	@PostMapping("/category/admin/create")
 	public String storeCategory(@Valid @ModelAttribute("category") Category category) {
 		
 		categoryService.save(category);
 		
-		return "redirect:/category";
+		return "redirect:/admin/category";
 	}
-	@GetMapping("/category/update/{id}")
+	@GetMapping("/category/admin/update/{id}")
 	public String getCategoryUpdate(@PathVariable("id") int id, Model model) {
 		
 		Optional<Category> optCategory = categoryService.findById(id);
@@ -71,21 +71,25 @@ public class CategoryController {
 		
 		return "category-update";
 	}
-	@PostMapping("/category/update")
-	public String updateCategory(@Valid Category category) {
+
+	@PostMapping("category/admin/update/{id}")
+	public String editCategory(
+			@PathVariable("id") int id,
+			@Valid Category category
+		) {
+		
+		Category oldCat = categoryService.findById(id).get();
 		
 		categoryService.save(category);
 		
-		return "redirect:/category";
+		return "redirect:/admin/category";
 	}
-	@GetMapping("/category/delete/{id}")
+	@GetMapping("/category/admin/delete/{id}")
 	public String deleteCategory(@PathVariable("id") int id) {
 		
-		Optional<Category> optCategory = categoryService.findById(id);
-		Category category = optCategory.get();
 		
-		categoryService.delete(category);
+		categoryService.deleteById(id);
 		
-		return "redirect:/category";
+		return "redirect:/admin/category";
 	}
 }

@@ -14,13 +14,28 @@
 		<h3 class="text-warning ms-3 my-4">Modifica la tua Categoria!</h3>
 		<form 
 		method="POST" 
-		action="/category/update"
+		th:action="@{/category/admin/update/{id} (id=*{id})}"
 		th:object="${category}" class="ms-3">
 			<input type="text" name="id" th:field="*{id}" style="display:none">
 			<label>Nome</label>
 			<input type="text" name="titolo" th:field="*{nome}">
 			<br>
-		<input class="offset-9 col-2 mt-5 btn btn-success" type="submit" value="Modifica">
+				<div
+			th:each="foto : ${foto}"
+			th:object="${foto}"
+		>
+			<input
+				type="checkbox"
+				name="foto"
+				
+				th:value="*{id}"
+				th:field="${categories.foto}"
+			>
+			<label>
+				[[*{nome}]]
+			</label>
+			</div>
+			<input class="offset-9 col-2 mt-5 btn btn-success" type="submit" value="Modifica">
 	
 		</form>
 	</container>

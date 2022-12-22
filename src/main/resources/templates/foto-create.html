@@ -8,13 +8,13 @@
 <body class="bg-dark text-white">
 		<h1>Crea la tua nuova Fotoricordo</h1>
 
-		<container class="text-white">
+		<container class="text-white my-5">
 			<h1 class="text-center text-warning my-4">Fotografia Tonino</h1>
 			<a href="/"  class="col-2 btn btn-danger d-block ms-3">Torna al menu principale</a>
 			<h1 class="mb-5 ms-3">Crea la tua nuova Fotoricordo</h1>
 			<form class="ms-3"
 			method="POST" 
-			action="/foto/create"
+			th:action="@{/foto/admin/create}"
 			th:object="${foto}" >
 				<label>Titolo</label>
 				<input class="form-input ms-3" type="text" name="name" th:field="*{titolo}">

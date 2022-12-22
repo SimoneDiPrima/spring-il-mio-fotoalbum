@@ -19,11 +19,11 @@ public class SecurityConf {
 	public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
 		
 		http.authorizeHttpRequests()	
-				.requestMatchers("*", "**").hasAuthority("Admin")
-				.requestMatchers("/**").permitAll()
-			.and().formLogin()
-			.and().logout()
-		;
+		.requestMatchers("/*/admin/", "/*/admin/**").hasAuthority("Admin")
+		.requestMatchers("/**").permitAll()
+	.and().formLogin()
+	.and().logout()
+;
 		
 		return http.build();
 	}
