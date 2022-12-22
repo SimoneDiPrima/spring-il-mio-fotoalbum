@@ -6,12 +6,11 @@
 <title>Insert title here</title>
 </head>
 <body class="bg-dark text-white">
-		<h1>Crea la tua nuova Fotoricordo</h1>
 
 		<container class="text-white my-5">
 			<h1 class="text-center text-warning my-4">Fotografia Tonino</h1>
 			<a href="/"  class="col-2 btn btn-danger d-block ms-3">Torna al menu principale</a>
-			<h1 class="mb-5 ms-3">Crea la tua nuova Fotoricordo</h1>
+			<h3 class="my-5 ms-3">Crea la tua nuova Fotoricordo</h3>
 			<form class="ms-3"
 			method="POST" 
 			th:action="@{/foto/admin/create}"
@@ -37,7 +36,7 @@
 			>
 			<label>[[*{nome}]]</label>
 		</div>
-			<input class="offset-8 btn btn-success text-white" type="submit" value="Crea">
+			<input class="offset-7 col-2 btn btn-success text-white my-5" type="submit" value="Crea">
 			
 		</form>
 	</container>

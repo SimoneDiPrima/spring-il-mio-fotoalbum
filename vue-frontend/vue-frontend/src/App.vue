@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+    <h1>FOTOGRAFIA TONINO</h1>
+    <ul>
+      <li
+        v-for="foto in foto"
+        :key="foto.id"
+      >{{ foto.titolo }}
+      </li>
+    </ul>
+  </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios';
+const API_URL = "http://localhost:8080/api/1";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+   
+  },
+  data() {
+    return {
+      foto: [],
+   
+    };
+  },
+  mounted() {
+    axios.get(API_URL + '/foto/all')
+         .then(res => {
+     
+        const foto = res.data;
+        if (foto == null) return;
+        this.foto= foto;
+    });
+  }}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

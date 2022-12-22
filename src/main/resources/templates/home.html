@@ -5,12 +5,16 @@
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 <title>Insert title here</title>
 </head>
-<body class="bg-dark text-white my-5">
-<h1 class="text-center text-warning">FOTOGRAFIA TONINO</h1>
+<body class="bg-dark text-white">
+	<container class="my-5">
+
+	<h1 class="text-center text-warning">FOTOGRAFIA TONINO</h1>
 	<a class="offset-8 btn btn-success text-white my-2" href="/foto/admin/create"
 		sec:authorize="hasAuthority('Admin')" type="button"><h5>Crea la tua nuova FotoRicordo preferita!</h5></a>
 	<a class="offset-8 btn btn-success text-white" href="/admin/category"  type="button"><h5>Vai alle tue categorie!</h5></a>
-<ul style="list-style-type:none"><strong>MENU FOTOGRAFO</strong>
+	<h3 class="text-center"><strong>MENU FOTOGRAFO</strong></h3>
+	<div class="d-flex offset-2 col-8">
+		<ul class="list-unstyled">
 			<li
 				th:each="foto : ${foto}"
 				th:object="${foto}">
@@ -31,5 +35,7 @@
 				
 			</li>
 		</ul>
+		</div>
+	</container>
 </body>
 </html>
