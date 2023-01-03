@@ -55,25 +55,25 @@ public class SpringIlMioFotoalbum2Application implements CommandLineRunner{
 		
 		
 		
-		Foto f1 = new Foto("la foto piu bella","la donna piu bella","https://picsum.photos/200/300");
-		Foto f2 = new Foto("la foto piu brutta","la donna piu brutta","https://picsum.photos/200/300");
-		Foto f3 = new Foto("la foto piu emozionante","la donna piu scarsa","https://picsum.photos/200/300");
-		Foto f4 = new Foto("la foto piu grande","la donna piu magra","https://picsum.photos/200/300");
+		Foto f1 = new Foto("Foto di un Matrimonio","tu che sei mia anche quando vado via tu sei l unica donna per me","https://picsum.photos/200/300");
+		Foto f2 = new Foto("Strage di Sarajevo","le tigri di arkan mettono a ferro e fuoco tutta la citta","https://picsum.photos/200/300");
+		Foto f3 = new Foto("La nascita di una gazzella","si lo sappiamo tutti che ogni mattina una gazzella..","https://picsum.photos/200/300");
+		Foto f4 = new Foto("Notte prima degli esami","Bomba o non bomba arriveremo a Roma malgrado voi","https://picsum.photos/200/300");
 		fotoServ.save(f1);
 		fotoServ.save(f2);
 		fotoServ.save(f3);
 		fotoServ.save(f4);
 		
-		Category c1 = new Category("paesaggi");
-		Category c2 = new Category("selfie");
-		Category c3 = new Category("mare");
-		Category c4 = new Category("Ferragnez");
-		Category c5 = new Category("photoshop");
-		Category c6 = new Category("filtrata");
-		Category c7 = new Category("moretti");
-		Category c8 = new Category("chiaroscuro");
-		Category c9 = new Category("sfuocata");
-		Category c10 = new Category("panoramica");
+		Category c1 = new Category("Astratta");
+		Category c2 = new Category("Boudoir");
+		Category c3 = new Category("Arte");
+		Category c4 = new Category("Guerra");
+		Category c5 = new Category("Matrimonio");
+		Category c6 = new Category("Moda");
+		Category c7 = new Category("Nudo");
+		Category c8 = new Category("Viaggio");
+		Category c9 = new Category("Ritratti");
+		Category c10 = new Category("Paesaggistica ");
 	
 		categoryServ.save(c1);
 		categoryServ.save(c2);
@@ -86,10 +86,10 @@ public class SpringIlMioFotoalbum2Application implements CommandLineRunner{
 		categoryServ.save(c9);
 		categoryServ.save(c10);
 		
-		Foto fc1 = new Foto("la foto piu bella","la donna piu bella","https://picsum.photos/200/300",c1);
-		Foto fc2 = new Foto("la foto piu bella","la donna piu bella","https://picsum.photos/200/300",c2);
-		Foto fc3 = new Foto("la foto piu bella","la donna piu bella","https://picsum.photos/200/300",c1);
-		Foto fc4 = new Foto("la foto piu bella","la donna piu bella","https://picsum.photos/200/300",c3);
+		Foto fc1 = new Foto("Generale","Dietro la collina ci sta la notte buia ed assassina","https://picsum.photos/200/300",c1);
+		Foto fc2 = new Foto("Ma dove vai","e intanto tu continui ad invecchiare si","https://picsum.photos/200/300",c2);
+		Foto fc3 = new Foto("Gente di mare","Noi condottieri di questa citta per sempre fieri dei nostri colori","https://picsum.photos/200/300",c1);
+		Foto fc4 = new Foto("Celebrities","la regina delle celebrita bella magnifica senza un eta","https://picsum.photos/200/300",c3);
 		
 		fotoServ.save(fc1);
 		fotoServ.save(fc2);

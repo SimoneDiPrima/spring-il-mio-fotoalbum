@@ -3,6 +3,8 @@ package org.foto.italy.demo.pojo;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,9 +32,7 @@ public class Foto {
 
 
 	
-	@NotNull(message="descriptiom must not be null")
-	@Size(min=10, max=130, message="description must be more than 10 charachters")
-	@Column(name="description", length=130)
+	
 	private String descrizione;
 	
 	
@@ -43,6 +43,7 @@ public class Foto {
 	private Boolean visible;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonIgnore
 	 private List<Category> categories;
 	
 	public Foto() {}
