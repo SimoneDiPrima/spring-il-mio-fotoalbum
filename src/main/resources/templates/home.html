@@ -8,25 +8,27 @@
 <body class="bg-dark text-white">
 	<container class="my-5">
 
-	<h1 class="text-center text-warning">FOTOGRAFIA TONINO</h1>
+	<h1 class="text-center text-warning">FOTOGRAFIA EUROPA</h1>
 	<a class="offset-8 btn btn-success text-white my-2" href="/foto/admin/create"
 		sec:authorize="hasAuthority('Admin')" type="button"><h5>Crea la tua nuova FotoRicordo preferita!</h5></a>
 	<a class="offset-8 btn btn-success text-white" href="/admin/category"  type="button"><h5>Vai alle tue categorie!</h5></a>
 	<h3 class="text-center"><strong>MENU FOTOGRAFO</strong></h3>
 	<div class="d-flex offset-2 col-8">
 		<ul class="list-unstyled">
+		<div class="d-flex">
 			<li
 				th:each="foto : ${foto}"
 				th:object="${foto}">
 				<span class="invisible">([[*{id}]])</span><br><strong>[[*{titolo}]]</strong><br>
 				[[*{descrizione}]]<br th:if="*{descrizione}">
 				<img th:src="*{url}">
-				<ul>
+				<ul class="list-unstyled my-4">
 				<h5>Categoria/e:</h5>
 					<li
 					 th:each="category : *{categories}" th:object="${category}">[[*{nome}]]
 					</li>
 				</ul>
+			</div>
 				<div sec:authorize="hasAuthority('Admin')">
 					<a class="btn btn-success text-white" th:href="@{/foto/{id} (id=*{id})}">VEDI NEL DETTAGLIO LA TUA FOTO</a>
 					<a class="btn btn-warning text-white" th:href="@{/foto/admin/update/{id} (id=*{id})}">MODIFICA LA TUA FOTO</a> 

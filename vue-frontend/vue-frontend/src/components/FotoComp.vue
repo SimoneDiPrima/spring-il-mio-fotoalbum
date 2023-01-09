@@ -1,6 +1,6 @@
 <template>
     <div class="py-5 bg-dark text-white">
-        <h1 class="text-center text-warning">FOTOGRAFIA TONINO</h1>
+        <h1 class="text-center text-warning">FOTOGRAFIA EUROPA</h1>
         <ul class="d-flex flex-wrap">
             <li class="col-4 my-4" v-for="foto in fotos" :key="foto.id">
                 <h3><strong>{{ foto.titolo }}</strong></h3>
