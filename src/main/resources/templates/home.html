@@ -15,7 +15,6 @@
 	<h3 class="text-center"><strong>MENU FOTOGRAFO</strong></h3>
 	<div class="d-flex offset-2 col-8">
 		<ul class="list-unstyled">
-		<div class="d-flex">
 			<li
 				th:each="foto : ${foto}"
 				th:object="${foto}">
@@ -28,7 +27,6 @@
 					 th:each="category : *{categories}" th:object="${category}">[[*{nome}]]
 					</li>
 				</ul>
-			</div>
 				<div sec:authorize="hasAuthority('Admin')">
 					<a class="btn btn-success text-white" th:href="@{/foto/{id} (id=*{id})}">VEDI NEL DETTAGLIO LA TUA FOTO</a>
 					<a class="btn btn-warning text-white" th:href="@{/foto/admin/update/{id} (id=*{id})}">MODIFICA LA TUA FOTO</a> 
