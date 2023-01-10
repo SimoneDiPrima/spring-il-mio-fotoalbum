@@ -27,32 +27,11 @@ public class FotoApiController {
 	
 	@Autowired
 	private FotoService fotoServ;
-	@Autowired
-	private CategoryService catServ;
-	@Autowired
-	private CommentService commServ;
-	
 	@GetMapping("/all")
 	public List<Foto> getAllPhotos() {
 		
 		List<Foto> photos = fotoServ.findAll();
-		List<Category> categories = catServ.findAll();
 		return photos;
 	}
-	@PostMapping("/{id}/comment/post")
-	public Comment postComment(
-			@PathVariable("id") int id,
-			@Valid @RequestBody Comment comment
-			
-	) {
-		
-		Optional<Foto> photoOpt = fotoServ.findById(id);
-		
-		if (photoOpt.isEmpty()) return null;
-		
-		Foto foto = photoOpt.get();
-		comment.setFoto(foto);
-		
-		return commServ.save(comment);
-	}
+	
 }

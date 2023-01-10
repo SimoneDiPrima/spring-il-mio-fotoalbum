@@ -32,9 +32,6 @@ public class Foto {
 	@NotNull
 	@Column(length = 128)
 	private String titolo;
-
-
-	
 	
 	private String descrizione;
 	
@@ -49,8 +46,7 @@ public class Foto {
 	private Set<Comment> comments;
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JsonIgnore
+	@ManyToMany
 	 private List<Category> categories;
 	
 	public Foto() {}
@@ -67,6 +63,10 @@ public class Foto {
 	public Foto(String titolo,String descrizione,String url,Boolean visible,String tag) {
 		this(titolo,descrizione,url,visible);
 		setTag(tag);
+	}
+	public Foto(String titolo,String descrizione,String url,Boolean visible,Category category) {
+		this(titolo,descrizione,url,visible);
+		setCategories(categories);
 	}
 	public Foto(String titolo,String descrizione,String url,Category... categories) {
 		this(titolo,descrizione,url);

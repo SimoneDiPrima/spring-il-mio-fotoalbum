@@ -11,7 +11,7 @@ export default {
 	components: {
 		FotoComp
 	}
-};
+	};
 </script>
 
 <style lang="scss">
