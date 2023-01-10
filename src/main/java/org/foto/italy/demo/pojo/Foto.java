@@ -1,7 +1,9 @@
 package org.foto.italy.demo.pojo;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -12,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -41,6 +44,10 @@ public class Foto {
 	private String tag;
 	
 	private Boolean visible;
+	
+	@OneToMany(mappedBy = "foto")
+	private Set<Comment> comments;
+	
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JsonIgnore
@@ -130,6 +137,28 @@ public class Foto {
 		
 		if (!finded)
 			getCategories().add(category);
+	}
+	
+	public Set<Comment> getComments() {
+		return comments;
+	}
+	public Foto setComments(Set<Comment> comments) {
+		
+		this.comments = comments;
+		
+		return this;
+	}
+	// this method use `fluent interface` to gain possibility
+	// to use chain method calls: 
+	// obj.meth1().meth2().meth3();
+	// check Spring...Application.java for more info
+	public Foto addComment(Comment comment) {
+		
+		if (getComments() == null) setComments(new HashSet<>());
+		
+		getComments().add(comment); 
+		
+		return this;
 	}
 	
 		
